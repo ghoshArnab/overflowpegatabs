@@ -1,0 +1,125 @@
+* {
+  box-sizing: border-box;
+}
+.tab {
+    min-height: 200px
+}
+
+.tab-container {
+    line-height: 24px;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, .1)
+}
+
+.tab-container .header {
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    position: relative;
+    background: green;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .3)
+}
+
+.tab-container .header ul {
+    padding: 0 0 3px;
+    margin: 0;
+    font-size: 0
+}
+
+.tab-container .header li {
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    padding: 8px;
+    text-decoration: none;
+    list-style: none;
+    color: #fff;
+    border-bottom: 2px solid transparent;
+    opacity: .9;
+    cursor: pointer
+}
+
+.tab-container .header li.active {
+    opacity: 1
+}
+
+.tab-container .header li:hover {
+    opacity: 1;
+    box-shadow: 0 3px 0 rgba(255, 255, 255, .8)
+}
+
+.tab-container .header .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: #fff;
+		-webkit-transition:300ms linear;
+	-moz-transition:300ms linear;
+	-o-transition:300ms linear;
+	-ms-transition:300ms linear;
+	transition:300ms linear;
+}
+
+.tab-container .arrow {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    bottom: 0;
+    width: 40px
+}
+
+.tab-container .arrow>* {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 50%
+}
+
+.tab-container .arrow img {
+    filter: drop-shadow(-1px -1px 3px #000)
+}
+
+.tab-container .arrow.l {
+    left: 0
+}
+
+.tab-container .arrow.l img {
+    left: 0;
+    transform: translateY(-50%) rotate(90deg)
+}
+
+.tab-container .arrow.r {
+    right: 0
+}
+
+.tab-container .arrow.r img {
+    right: 0;
+    transform: translateY(-50%) rotate(-90deg)
+}
+
+.tab-container .content-body {
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 0;
+    padding-bottom: 8px;
+    line-height: normal
+}
+
+.tab-container .content-body .tabs {
+    min-height: 1px
+}
+
+.tab-container .content-body .tab {
+    float: left;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    vertical-align: top;
+    padding: 8px
+}
