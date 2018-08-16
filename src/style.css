@@ -22,6 +22,12 @@
     box-shadow: 0 3px 5px rgba(0, 0, 0, .3)
 }
 
+.tab-container .header::-webkit-scrollbar {
+    width: 0px; 
+    height: 0; /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
 .tab-container .header ul {
     padding: 0 0 3px;
     margin: 0;
@@ -108,6 +114,11 @@
     margin: 0;
     padding-bottom: 8px;
     line-height: normal
+}
+.tab-container .content-body::-webkit-scrollbar {
+    width: 0px; 
+    height: 0; /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
 }
 
 .tab-container .content-body .tabs {
