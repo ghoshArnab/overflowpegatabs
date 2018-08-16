@@ -8,6 +8,7 @@ class tabOverflowIns {
             header: main.querySelector(".header ul"),
             content: main.querySelector(".content-body"),
             tabcontainer: main.querySelector(".tabs"),
+            /* scoped to find only children */
             headers: main.querySelectorAll(":scope > .header ul li"),
             tabs: main.querySelectorAll(":scope > .content-body > .tabs > .tab"),
             la: main.querySelector(".arrow.l"),
@@ -31,7 +32,6 @@ class tabOverflowIns {
     refresh(params = {}) {
         Object.assign(this, params);
         if (this.tabs.length < 1) return;
-        debugger;
         this.width = this.showArrows ? (this.main.offsetWidth - 80) / this.num : this.main.offsetWidth;
         this.setProps();
         this.active = params.active || this.active || 0;
@@ -143,6 +143,7 @@ class tabOverflowIns {
         me.content.addEventListener("scroll", function() {
 			event.preventDefault();
 			event.stopPropagation();
+            onScroll();
         });
 
 		me.content.addEventListener("touchmove", function() {
@@ -162,9 +163,9 @@ class tabOverflowIns {
 		
 		me.content.addEventListener("touchend", function() {
 			if(direction == "right"){
-				requestAnimationFrame(onTouchStartNikRight);  
+				requestAnimationFrame(onTouchStartRight);  
 			} else if(direction == "left"){	
-				requestAnimationFrame(onTouchStartNikLeft); 
+				requestAnimationFrame(onTouchStartLeft); 
 			}
 		}, false);
 
@@ -176,7 +177,7 @@ class tabOverflowIns {
             } */		
         }, false);
 
-		function onTouchStartNikRight(){
+		function onTouchStartRight(){
 
 			var t  = me.active?(me.active+1) : 1;
 			if(me.headerProps[t]){
@@ -195,7 +196,7 @@ class tabOverflowIns {
 			}
 		}
 
-		function onTouchStartNikLeft(){
+		function onTouchStartLeft(){
 			if(me.active >0){
 				var t  = me.active?(me.active-1) : 1;
 			
@@ -213,7 +214,7 @@ class tabOverflowIns {
 			}
 		}
 		
-		/*
+		
         function onScroll() {
             const per = (me.content.scrollLeft % me.width) / me.width;
             const t = Math.floor(me.content.scrollLeft / me.width);
@@ -226,16 +227,9 @@ class tabOverflowIns {
                     me.header.parentElement.scrollLeft = left - (me.width - width) / 2;
                 } catch (e) {}
             
-            clearTimeout(isScrolling);
-            isScrolling = setTimeout(function() {
-                if (per >= 0.50) {
-                    me.active += 1;
-                } else {
-                    me.active = 1;
-                }
-            }, 100);
+            
         }
-		*/
+		
     }
     setWindowResizeEvent() {
         let me = this;
@@ -244,6 +238,7 @@ class tabOverflowIns {
         });
     }
     animate(who, what, to, time, type = 'linear') {
+        who.style.display = "none";
         const from = who[what];
         const diff = to - from;
         const step = 1 / Math.round(time / 16) * diff;
@@ -261,6 +256,7 @@ class tabOverflowIns {
             requestAnimationFrame(frame);
         }
         requestAnimationFrame(frame);
+        who.style.display = "block";
     }
     animations() {
         return {
